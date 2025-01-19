@@ -21,7 +21,7 @@
 		{% for dish in dish_list %}
 			<tr>
 				<td>{{ dish.id }}</td>
-				<td>{{ dish.name }}</td>
+				<td><a href="{% url 'catalog:dish-detail' pk=dish.id %}">{{ dish.name }}</a></td>
 				<td>{{ dish.price }}</td>
 				<td>{{ dish.dish_type.name}}</td>
 				<td><a href="#" class="btn btn-primary">Update</a></td>
