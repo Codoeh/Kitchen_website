@@ -9,14 +9,26 @@
   </h1>
 
   {% if dish_list %}
-    <ul>
-      {% for dish in dish_list %}
-        <li>
-          <a href="#">{{ dish.id }}</a>
-          {{ dish.model }} ({{ dish.cook.name }})
-        </li>
-      {% endfor %}
-    </ul>
+	<table class="table">
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Price</th>
+			<th>Dish type</th>
+			<th>Update</th>
+			<th>Delete</th>
+		</tr>
+		{% for dish in dish_list %}
+			<tr>
+				<td>{{ dish.id }}</td>
+				<td>{{ dish.name }}</td>
+				<td>{{ dish.price }}</td>
+				<td>{{ dish.dish_type.name}}</td>
+				<td><a href="#" class="btn btn-primary">Update</a></td>
+				<td><a href="#" class="btn btn-danger">Delete</a></td>
+			</tr>
+		{% endfor %}
+	</table>
   {% else %}
     <p>There are no dishes in service.</p>
   {% endif %}
