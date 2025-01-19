@@ -37,3 +37,9 @@ class DishListView(LoginRequiredMixin, ListView):
     model = Dish
     paginate_by = 5
     template_name = "catalog/dish_list.html"
+
+
+class DishTypeListView(LoginRequiredMixin, ListView):
+    model = DishType
+    paginate_by = 5
+    template_name = "catalog/dish_type_list.html"
