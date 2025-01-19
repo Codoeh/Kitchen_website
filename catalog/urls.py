@@ -1,5 +1,4 @@
 from django.urls import path
-from .models import Cook, Dish, DishType
 from .views import (
     index,
     CookListView,
