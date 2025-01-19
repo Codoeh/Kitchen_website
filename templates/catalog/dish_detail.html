@@ -16,11 +16,11 @@
     Cooks
 
     {% if cook in user.cooks.all %}
-      <a href="#" class="btn btn-danger link-to-page">
+      <a href="{% url 'catalog:toggle-dish-assign' pk=dish.id %}" class="btn btn-danger link-to-page">
         Delete me from this dish
       </a>
     {% else %}
-      <a href="#" class="btn btn-success link-to-page">
+      <a href="{% url 'catalog:toggle-dish-assign' pk=dish.id %}" class="btn btn-success link-to-page">
         Assign me to this dish
       </a>
     {% endif %}

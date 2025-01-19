@@ -1,6 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, UpdateView, CreateView, DeleteView
 
 from catalog.models import Cook, Dish, DishType
@@ -53,3 +55,15 @@ class DishTypeListView(LoginRequiredMixin, ListView):
     model = DishType
     paginate_by = 5
     template_name = "catalog/dish_type_list.html"
+
+
+@login_required
+def toggle_assign_to_dish(request, pk):
+    cook = Cook.objects.get(id=request.user.id)
+    if (
+        Dish.objects.get(id=pk) in cook.dishes.all()
+    ):  # probably could check if car exists
+        cook.dishes.remove(pk)
+    else:
+        cook.dishes.add(pk)
+    return HttpResponseRedirect(reverse_lazy("catalog:dish-detail", args=[pk]))
