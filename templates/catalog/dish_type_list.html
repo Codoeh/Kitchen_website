@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    Dish types list
+    <a href="#" class="btn btn-primary link-to-page">
+      Create
+    </a>
+  </h1>
+
+  {% if dishtype_list %}
+    <ul>
+      {% for dish_type in dishtype_list %}
+        <li>
+          <a href="#">{{ dish.id }}</a>
+          {{ dish_type.name }})
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>There are no dish types in service.</p>
+  {% endif %}
+{% endblock %}
