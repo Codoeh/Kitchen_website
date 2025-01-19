@@ -33,6 +33,11 @@ class CookListView(LoginRequiredMixin, ListView):
     template_name = "catalog/cook_list.html"
 
 
+class CookDetailView(LoginRequiredMixin, DetailView):
+    model = Cook
+    queryset = Cook.objects.all().prefetch_related("dish__dish_type")
+    template_name = "catalog/cook_detail.html"
+
 class DishListView(LoginRequiredMixin, ListView):
     model = Dish
     paginate_by = 5
