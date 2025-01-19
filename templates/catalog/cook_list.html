@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+	{% if cook_list %}
+		<table class="table">
+			<tr>
+				<th>ID</th>
+				<th>Username</th>
+				<th>First name</th>
+				<th>Last name</th>
+				<th>Years of experience</th>
+			</tr>
+			{% for cook in cook_list %}
+				<tr>
+					<td>{{ cook.id }}</td>
+					<td><a href="{{ cook.get_absolute_url }}">{{ driver.username }} {% if user == driver %} (Me){% endif %}</a>
+					</td>
+					<td>{{ cook.first_name }}</td>
+					<td>{{ cook.last_name }}</td>
+					<td>{{ cook.years_of_experience }}</td>
+				</tr>
+			{% endfor %}
+		</table>
+	{% else %}
+		<p>There are no cooks in the service.</p>
+	{% endif %}
+{% endblock %}

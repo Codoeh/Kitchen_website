@@ -8,7 +8,7 @@ from .views import (
 
 urlpatterns = [
     path("", index, name="index"),
-    path("/cook/", CookListView.as_view(), name="cook-list"),
+    path("cook/", CookListView.as_view(), name="cook-list"),
 ]
 
 app_name = "catalog"
