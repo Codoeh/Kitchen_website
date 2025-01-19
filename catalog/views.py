@@ -35,7 +35,7 @@ class CookListView(LoginRequiredMixin, ListView):
 
 class CookDetailView(LoginRequiredMixin, DetailView):
     model = Cook
-    queryset = Cook.objects.all().prefetch_related("dish__dish_type")
+    queryset = Cook.objects.all().prefetch_related("dishes__dish_type")
     template_name = "catalog/cook_detail.html"
 
 class DishListView(LoginRequiredMixin, ListView):
