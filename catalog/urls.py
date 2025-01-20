@@ -15,6 +15,7 @@ from .views import (
     DishesByTypeView,
     DishTypeCreateView,
     DishTypeUpdateView,
+    DishTypeDeleteView,
     toggle_assign_to_dish,
 )
 
@@ -35,6 +36,7 @@ urlpatterns = [
     path("dish_type/<int:pk>/", DishesByTypeView.as_view(), name="dishes-by-type"),
     path("dish_type/create/", DishTypeCreateView.as_view(), name="dish-type-create"),
     path("dish_type/<int:pk>/update/", DishTypeUpdateView.as_view(), name="dish-type-update"),
+    path("dish_type/<int:pk>/delete/", DishTypeDeleteView.as_view(), name="dish-type-delete"),
     path("dish/<int:pk>/toggle-assign/", toggle_assign_to_dish, name="toggle-dish-assign",
     ),
 ]
