@@ -3,7 +3,7 @@
 {% block content %}
   <h1>
     Username: {{ cook.username }}
-    <a href="#" class="btn btn-danger link-to-page">
+    <a href="{% url 'catalog:cook-delete' pk=cook.id %}" class="btn btn-danger link-to-page">
       Delete
     </a>
 
