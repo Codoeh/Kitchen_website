@@ -31,7 +31,7 @@
 					<td>{{ dish.price }}</td>
 					<td>{{ dish.dish_type.name }}</td>
 					<td><a href="{% url 'catalog:dish-update' pk=dish.id %}" class="btn btn-primary">Update</a></td>
-					<td><a href="#" class="btn btn-danger">Delete</a></td>
+					<td><a href="{% url 'catalog:dish-delete' pk=dish.id %}" class="btn btn-danger">Delete</a></td>
 				</tr>
 			{% endfor %}
 		</table>

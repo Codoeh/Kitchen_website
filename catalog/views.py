@@ -112,6 +112,11 @@ class DishUpdateView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy("catalog:dish-list")
 
 
+class DishDeleteView(LoginRequiredMixin, DeleteView):
+    model = Dish
+    success_url = reverse_lazy("catalog:dish-list")
+
+
 class DishTypeListView(LoginRequiredMixin, ListView):
     model = DishType
     paginate_by = 5
