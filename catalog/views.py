@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, UpdateView, CreateView, DeleteView
 
-from catalog.forms import CookSearchForm
+from catalog.forms import CookSearchForm, DishSearchForm
 from catalog.models import Cook, Dish, DishType
 
 
@@ -60,6 +60,14 @@ class DishListView(LoginRequiredMixin, ListView):
     model = Dish
     paginate_by = 5
     template_name = "catalog/dish_list.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(DishListView, self).get_context_data(**kwargs)
+        name = self.request.GET.get("username", "")
+        context["search_form"] = DishSearchForm(
+            initial={"name": name}
+        )
+        return context
 
 
 class DishDetailView(LoginRequiredMixin, DetailView):
