@@ -138,6 +138,13 @@ class DishTypeListView(LoginRequiredMixin, ListView):
         return queryset
 
 
+class DishTypeCreateView(LoginRequiredMixin, CreateView):
+    model = DishType
+    fields = "__all__"
+    success_url = reverse_lazy("catalog:dish-type-list")
+    template_name = "catalog/dish_type_form.html"
+
+
 @login_required
 def toggle_assign_to_dish(request, pk):
     cook = Cook.objects.get(id=request.user.id)
