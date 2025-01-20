@@ -94,6 +94,14 @@ class DishTypeListView(LoginRequiredMixin, ListView):
         )
         return context
 
+    def get_queryset(self):
+        queryset = DishType.objects.all()
+        form = DishTypeSearchForm(self.request.GET)
+        if form.is_valid():
+            return queryset.filter(name__icontains=form.
+                                   cleaned_data["name"])
+        return queryset
+
 
 @login_required
 def toggle_assign_to_dish(request, pk):
