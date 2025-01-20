@@ -32,4 +32,5 @@
       <li>{{ cook.username }} ({{ cook.first_name }} {{ cook.last_name }})</li>
     {% endfor %}
   </ul>
+	    <a href="{% url 'catalog:dish-list' %}" class="btn btn-secondary">Back to dishes</a>
 {% endblock %}
