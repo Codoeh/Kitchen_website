@@ -120,6 +120,7 @@ class DishDeleteView(LoginRequiredMixin, DeleteView):
 class DishTypeListView(LoginRequiredMixin, ListView):
     model = DishType
     paginate_by = 5
+    template_name = "catalog/dish_type_list.html"
 
     def get_context_data(self, **kwargs):
         context = super(DishTypeListView, self).get_context_data(**kwargs)
