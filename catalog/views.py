@@ -42,6 +42,13 @@ class CookListView(LoginRequiredMixin, ListView):
         )
         return context
 
+    def get_queryset(self):
+        queryset = Cook.objects.all()
+        form = CookSearchForm(self.request.GET)
+        if form.is_valid():
+            return queryset.filter(username__icontains=form.
+                                   cleaned_data["username"])
+        return queryset
 
 
 class CookDetailView(LoginRequiredMixin, DetailView):
