@@ -30,7 +30,7 @@
 					<td><a href="{% url 'catalog:dish-detail' pk=dish.id %}">{{ dish.name }}</a></td>
 					<td>{{ dish.price }}</td>
 					<td>{{ dish.dish_type.name }}</td>
-					<td><a href="#" class="btn btn-primary">Update</a></td>
+					<td><a href="{% url 'catalog:dish-update' pk=dish.id %}" class="btn btn-primary">Update</a></td>
 					<td><a href="#" class="btn btn-danger">Delete</a></td>
 				</tr>
 			{% endfor %}
