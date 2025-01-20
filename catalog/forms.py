@@ -1,5 +1,13 @@
 from django import forms
 
+from catalog.models import Cook
+
+
+class CookExperienceUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Cook
+        fields = ["years_of_experience"]
+
 
 class CookSearchForm(forms.Form):
     username = forms.CharField(
