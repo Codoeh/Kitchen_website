@@ -66,7 +66,7 @@ class CookCreateView(LoginRequiredMixin, CreateView):
 class CookExperienceUpdateView(LoginRequiredMixin, UpdateView):
     model = Cook
     form_class = CookExperienceUpdateForm
-    success_url = reverse_lazy("catalog:cook-detail")
+    success_url = reverse_lazy("catalog:cook-list")
 
 
 class DishListView(LoginRequiredMixin, ListView):
