@@ -29,14 +29,14 @@ class CookSearchForm(forms.Form):
 
 
 class DishForm(forms.ModelForm):
-    drivers = forms.ModelMultipleChoiceField(
+    cooks = forms.ModelMultipleChoiceField(
         queryset=get_user_model().objects.all(),
         widget=forms.CheckboxSelectMultiple,
     )
 
     class Meta:
         model = Dish
-        fields = "__all__"
+        fields = ["name", "description", "price", "dish_type", "cooks",]
 
 
 class DishSearchForm(forms.Form):
