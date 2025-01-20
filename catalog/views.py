@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, UpdateView, CreateView, DeleteView
 
-from catalog.forms import CookSearchForm, DishSearchForm
+from catalog.forms import CookSearchForm, DishSearchForm, DishTypeSearchForm
 from catalog.models import Cook, Dish, DishType
 
 
@@ -62,7 +62,7 @@ class DishListView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super(DishListView, self).get_context_data(**kwargs)
-        name = self.request.GET.get("username", "")
+        name = self.request.GET.get("name", "")
         context["search_form"] = DishSearchForm(
             initial={"name": name}
         )
@@ -85,7 +85,14 @@ class DishDetailView(LoginRequiredMixin, DetailView):
 class DishTypeListView(LoginRequiredMixin, ListView):
     model = DishType
     paginate_by = 5
-    template_name = "catalog/dish_type_list.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(DishTypeListView, self).get_context_data(**kwargs)
+        name = self.request.GET.get("name", "")
+        context["search_form"] = DishTypeSearchForm(
+            initial={"name": name}
+        )
+        return context
 
 
 @login_required
