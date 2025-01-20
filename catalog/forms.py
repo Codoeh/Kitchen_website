@@ -5,6 +5,7 @@ from django.core.exceptions import ValidationError
 
 from catalog.models import Cook, Dish, DishType
 
+
 class CookSearchForm(forms.Form):
     username = forms.CharField(
         max_length=255,
@@ -14,3 +15,12 @@ class CookSearchForm(forms.Form):
             attrs={"placeholder": "Search by username"}),
     )
 
+
+class DishSearchForm(forms.Form):
+    name = forms.CharField(
+        max_length=255,
+        required=False,
+        label="",
+        widget=forms.TextInput(
+            attrs={"placeholder": "Search by name"}),
+    )
