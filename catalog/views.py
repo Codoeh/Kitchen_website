@@ -69,6 +69,11 @@ class CookExperienceUpdateView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy("catalog:cook-list")
 
 
+class CookDeleteView(LoginRequiredMixin, DeleteView):
+    model = Cook
+    success_url = reverse_lazy("catalog:cook-list")
+
+
 class DishListView(LoginRequiredMixin, ListView):
     model = Dish
     paginate_by = 5
