@@ -56,6 +56,13 @@ class CookDetailView(LoginRequiredMixin, DetailView):
     queryset = Cook.objects.all().prefetch_related("dishes__dish_type")
     template_name = "catalog/cook_detail.html"
 
+
+class CookCreateView(LoginRequiredMixin, CreateView):
+    model = Cook
+    fields = "__all__"
+    success_url = reverse_lazy("catalog:cook-list")
+
+
 class DishListView(LoginRequiredMixin, ListView):
     model = Dish
     paginate_by = 5
