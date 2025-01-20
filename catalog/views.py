@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, UpdateView, CreateView, DeleteView
 
@@ -143,6 +143,21 @@ class DishTypeCreateView(LoginRequiredMixin, CreateView):
     fields = "__all__"
     success_url = reverse_lazy("catalog:dish-type-list")
     template_name = "catalog/dish_type_form.html"
+
+
+class DishesByTypeView(ListView):
+    model = Dish
+    template_name = 'catalog/dishes_by_type.html'
+    context_object_name = 'dishes'
+
+    def get_queryset(self):
+        self.dish_type = get_object_or_404(DishType, pk=self.kwargs['pk'])
+        return Dish.objects.filter(dish_type=self.dish_type)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['dish_type'] = self.dish_type
+        return context
 
 
 @login_required

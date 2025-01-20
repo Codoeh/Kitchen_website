@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Dishes for {{ dish_type.name }}</h1>
+    {% if dishes %}
+        <ul>
+            {% for dish in dishes %}
+                <li>
+                    {{ dish.name }} - Price: {{ dish.price }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>There are no dishes for this type.</p>
+    {% endif %}
+    <a href="{% url 'catalog:dish-type-list' %}" class="btn btn-secondary">Back to dish types</a>
+{% endblock %}

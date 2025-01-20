@@ -5,7 +5,7 @@
 {% block content %}
 	<h1>
 		Dish types list
-		<a href="#" class="btn btn-primary link-to-page">
+		<a href="{% url 'catalog:dish-type-create' %}" class="btn btn-primary link-to-page">
 			Create
 		</a>
 	</h1>
@@ -17,8 +17,7 @@
 		<ul>
 			{% for dish_type in dishtype_list %}
 				<li>
-					<a href="#">{{ dish.id }}</a>
-					{{ dish_type.name }}
+					<a href="{% url 'catalog:dishes-by-type' pk=dish_type.id %}">{{ dish_type.name }}</a>
 				</li>
 			{% endfor %}
 		</ul>
