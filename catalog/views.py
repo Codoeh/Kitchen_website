@@ -171,6 +171,7 @@ class DishTypeUpdateView(LoginRequiredMixin, UpdateView):
 class DishTypeDeleteView(LoginRequiredMixin, DeleteView):
     model = DishType
     success_url = reverse_lazy("catalog:dish-type-list")
+    template_name = "catalog/dish_type_confirm_delete.html"
 
 
 @login_required
