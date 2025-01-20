@@ -1,6 +1,7 @@
 from django import forms
+from django.contrib.auth import get_user_model
 
-from catalog.models import Cook
+from catalog.models import Cook, Dish
 
 
 class CookExperienceUpdateForm(forms.ModelForm):
@@ -25,6 +26,17 @@ class CookSearchForm(forms.Form):
         widget=forms.TextInput(
             attrs={"placeholder": "Search by username"}),
     )
+
+
+class DishForm(forms.ModelForm):
+    drivers = forms.ModelMultipleChoiceField(
+        queryset=get_user_model().objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+    )
+
+    class Meta:
+        model = Dish
+        fields = "__all__"
 
 
 class DishSearchForm(forms.Form):

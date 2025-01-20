@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, UpdateView, CreateView, DeleteView
 
-from catalog.forms import CookSearchForm, DishSearchForm, DishTypeSearchForm, CookExperienceUpdateForm
+from catalog.forms import CookSearchForm, DishSearchForm, DishTypeSearchForm, CookExperienceUpdateForm, DishForm
 from catalog.models import Cook, Dish, DishType
 
 
@@ -98,6 +98,12 @@ class DishListView(LoginRequiredMixin, ListView):
 class DishDetailView(LoginRequiredMixin, DetailView):
     model = Dish
     template_name = "catalog/dish_detail.html"
+
+
+class DishCreateView(LoginRequiredMixin, CreateView):
+    model = Dish
+    form_class = DishForm
+    success_url = reverse_lazy("catalog:dish-list")
 
 
 class DishTypeListView(LoginRequiredMixin, ListView):
