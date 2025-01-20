@@ -2,6 +2,10 @@
 
 {% block content %}
     <h1>Dishes for {{ dish_type.name }}</h1>
+	<div class="float-right">
+		<a href="{% url 'catalog:dish-type-update' pk=dish_type.id %}" class="btn btn-primary">Update</a>
+		<a href="{% url 'catalog:dish-type-delete' pk=dish_type.id %}" class="btn btn-danger">Delete</a>
+	</div>
     {% if dishes %}
         <ul>
             {% for dish in dishes %}
