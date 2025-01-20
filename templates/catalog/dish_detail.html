@@ -15,7 +15,7 @@
   <h1>
     Cooks
 
-    {% if cook in user.cooks.all %}
+    {% if user in dish.cooks.all %}
       <a href="{% url 'catalog:toggle-dish-assign' pk=dish.id %}" class="btn btn-danger link-to-page">
         Delete me from this dish
       </a>
