@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase, Client
-
+from django.urls import reverse
 
 
 class AdminSiteTests(TestCase):
@@ -16,3 +16,13 @@ class AdminSiteTests(TestCase):
             password="testpassword",
             years_of_experience="1",
         )
+
+    def test_years_of_experience_listed(self):
+        url = reverse("catalog:cook-list")
+        res = self.client.get(url)
+        self.assertContains(res, self.cook.years_of_experience)
+
+    def test_years_of_experience_update(self):
+        url = reverse("catalog:cook-update", args=[self.cook.id])
+        res = self.client.get(url)
+        self.assertContains(res, self.cook.years_of_experience)
