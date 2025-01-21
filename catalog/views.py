@@ -13,9 +13,9 @@ from catalog.models import Cook, Dish, DishType
 def index(request):
     """View function for the home page of the site."""
 
-    num_cooks = Cook.objects.count()
-    num_dishes = Dish.objects.count()
-    num_dish_types = DishType.objects.count()
+    num_cooks = Cook.objects.only("id").count()
+    num_dishes = Dish.objects.only("id").count()
+    num_dish_types = DishType.objects.only("id").count()
 
     num_visits = request.session.get("num_visits", 0)
     request.session["num_visits"] = num_visits + 1
@@ -99,6 +99,8 @@ class DishDetailView(LoginRequiredMixin, DetailView):
     model = Dish
     template_name = "catalog/dish_detail.html"
 
+    def get_queryset(self):
+        return super().get_queryset().prefetch_related("cooks")
 
 class DishCreateView(LoginRequiredMixin, CreateView):
     model = Dish
