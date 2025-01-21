@@ -137,3 +137,8 @@ LOGIN_REDIRECT_URL = "/"
 STATICFILES_DIRS = (BASE_DIR / "static",)
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+    "localhost",
+]
