@@ -133,7 +133,7 @@ class DishTypeListView(LoginRequiredMixin, ListView):
         return context
 
     def get_queryset(self):
-        queryset = DishType.objects.all()
+        queryset = DishType.objects.only("name")
         form = DishTypeSearchForm(self.request.GET)
         if form.is_valid():
             return queryset.filter(name__icontains=form.
