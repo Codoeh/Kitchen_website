@@ -100,7 +100,7 @@ class DishDetailView(LoginRequiredMixin, DetailView):
     template_name = "catalog/dish_detail.html"
 
     def get_queryset(self):
-        return super().get_queryset().prefetch_related("cooks")
+        return Dish.objects.prefetch_related("cooks").select_related("dish_type")
 
 class DishCreateView(LoginRequiredMixin, CreateView):
     model = Dish
