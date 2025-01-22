@@ -54,7 +54,7 @@ class ViewTests(TestCase):
             "years_of_experience": 3,
            "date_joined": datetime.now().isoformat(),
         })
-        self.assertEqual(response.status_code, 302)  # Redirect after success
+        self.assertEqual(response.status_code, 302)
         self.assertTrue(Cook.objects.filter(username="newcook").exists())
 
 
@@ -81,7 +81,7 @@ class ViewTests(TestCase):
             "dish_type": self.dish_type.id,
             "cooks": [self.user.id],
         })
-        self.assertEqual(response.status_code, 302)  # Redirect after success
+        self.assertEqual(response.status_code, 302)
         self.assertTrue(Dish.objects.filter(name="New Dish").exists())
 
     def test_dish_type_list_view(self):
@@ -101,5 +101,5 @@ class ViewTests(TestCase):
     def test_toggle_assign_to_dish(self):
         self.client.login(username="testuser", password="password123")
         response = self.client.post(reverse('catalog:toggle-dish-assign', args=[self.dish.id]))
-        self.assertEqual(response.status_code, 302)  # Redirect to dish detail
-        self.assertNotIn(self.dish, self.user.dishes.all())  # Removed after toggle
+        self.assertEqual(response.status_code, 302)
+        self.assertNotIn(self.dish, self.user.dishes.all())
