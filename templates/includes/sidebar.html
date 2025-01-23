@@ -1,3 +1,4 @@
+{% load static %}
 <!-- Navbar -->
 <div class="container position-sticky z-index-sticky top-0">
 	<div class="row">
@@ -7,7 +8,7 @@
 				<div class="container-fluid px-0">
 					<a class="navbar-brand font-weight-bolder ms-sm-3 text-sm"
 						 href="{% url 'catalog:index' %}" rel="tooltip"
-							 data-placement="bottom" target="_blank">
+						 data-placement="bottom" target="_blank">
 						Kitchen website
 					</a>
 					<button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse"
@@ -26,7 +27,8 @@
 									 id="dropdownMenuPages" data-bs-toggle="dropdown" aria-expanded="false">
 									<i class="material-symbols-rounded opacity-6 me-2 text-md">dashboard</i>
 									Pages
-									<img src="../static/img/down-arrow-dark.svg" alt="down-arrow" class="arrow ms-auto ms-md-2">
+									<img src="{% static 'img/down-arrow-dark.svg' %}" alt="down-arrow" class="arrow ms-auto ms-md-2">
+
 								</a>
 								<div class="dropdown-menu dropdown-menu-animation ms-n3 dropdown-md p-3 border-radius-xl mt-0 mt-lg-3"
 										 aria-labelledby="dropdownMenuPages">
@@ -36,27 +38,27 @@
 										</h6>
 										<a href="{% url 'catalog:index' %}" class="dropdown-item border-radius-md">
 											<span>Home</span>
-										<a href="{% url 'catalog:cook-list' %}" class="dropdown-item border-radius-md">
-											<span>Cooks</span>
-										<a href="{% url 'catalog:dish-list' %}" class="dropdown-item border-radius-md">
-											<span>Dishes</span>
-										</a>
-										<a href="{% url 'catalog:dish-type-list' %}" class="dropdown-item border-radius-md">
-											<span>Dish types</span>
-										</a>
-										{% if user.is_authenticated %}
-										<h6 class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1">
-											User:
-											<a href="{{ user.get_absolute_url }}">{{ user.get_username }}</a>
-										</h6>
-										<a href="{% url 'logout'%}?next={{request.path}}" class="dropdown-item border-radius-md">
-											<span>Logout</span>
-										</a>
-										{% else %}
-										<a href="{% url 'login'%}?next={{request.path}}" class="dropdown-item border-radius-md">
-											<span>Login</span>
-										</a>
-										{% endif %}
+											<a href="{% url 'catalog:cook-list' %}" class="dropdown-item border-radius-md">
+												<span>Cooks</span>
+												<a href="{% url 'catalog:dish-list' %}" class="dropdown-item border-radius-md">
+													<span>Dishes</span>
+												</a>
+												<a href="{% url 'catalog:dish-type-list' %}" class="dropdown-item border-radius-md">
+													<span>Dish types</span>
+												</a>
+												{% if user.is_authenticated %}
+													<h6 class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1">
+														User:
+														<a href="{{ user.get_absolute_url }}">{{ user.get_username }}</a>
+													</h6>
+													<a href="{% url 'logout' %}?next={{ request.path }}" class="dropdown-item border-radius-md">
+														<span>Logout</span>
+													</a>
+												{% else %}
+													<a href="{% url 'login' %}?next={{ request.path }}" class="dropdown-item border-radius-md">
+														<span>Login</span>
+													</a>
+												{% endif %}
 									</div>
 
 									<div class="d-lg-none">

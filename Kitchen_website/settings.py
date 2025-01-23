@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "debug_toolbar",
     "crispy_forms",
-    "crispy_bootstrap4",
+    "crispy_bootstrap5",
     "catalog",
 ]
 
@@ -72,7 +72,7 @@ TEMPLATES = [
     },
 ]
 
-CRISPY_TEMPLATE_PACK = "bootstrap4"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 WSGI_APPLICATION = "Kitchen_website.wsgi.application"
 
@@ -142,3 +142,5 @@ INTERNAL_IPS = [
     "127.0.0.1",
     "localhost",
 ]
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"

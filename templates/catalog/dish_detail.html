@@ -1,37 +1,42 @@
 {% extends "base.html" %}
 
+{% load crispy_forms_filters %}
 {% block content %}
-  <h1>
-    {{ dish.name }}
-    <a href="{% url 'catalog:dish-delete' pk=dish.id %}" class="btn btn-danger link-to-page">
-      Delete
-    </a>
 
-    <a href="{% url 'catalog:dish-update' pk=dish.id %}" class="btn btn-secondary link-to-page">
-      Update
-    </a>
-  </h1>
-  <p>Dish type: {{ dish.dish_type.name }}</p>
-	<p>{{ dish.description }}</p>
-  <h1>
-    Cooks
+	<div>
+		<h1>
+			{{ dish.name }}
+			<a href="{% url 'catalog:dish-delete' pk=dish.id %}" class="btn btn-danger link-to-page">
+				Delete
+			</a>
 
-    {% if user in dish.cooks.all %}
-      <a href="{% url 'catalog:toggle-dish-assign' pk=dish.id %}" class="btn btn-danger link-to-page">
-        Delete me from this dish
-      </a>
-    {% else %}
-      <a href="{% url 'catalog:toggle-dish-assign' pk=dish.id %}" class="btn btn-success link-to-page">
-        Assign me to this dish
-      </a>
-    {% endif %}
+			<a href="{% url 'catalog:dish-update' pk=dish.id %}" class="btn btn-secondary link-to-page">
+				Update
+			</a>
+		</h1>
+		<p>Dish type: {{ dish.dish_type.name }}</p>
+		<p>{{ dish.description }}</p>
+		<h1>
+			Cooks
 
-  </h1>
-  <hr>
-  <ul>
-    {% for cook in dish.cooks.all %}
-      <li>{{ cook.username }} ({{ cook.first_name }} {{ cook.last_name }})</li>
-    {% endfor %}
-  </ul>
-	    <a href="{% url 'catalog:dish-list' %}" class="btn btn-secondary">Back to dishes</a>
+			{% if user in dish.cooks.all %}
+				<a href="{% url 'catalog:toggle-dish-assign' pk=dish.id %}" class="btn btn-danger link-to-page">
+					Delete me from this dish
+				</a>
+			{% else %}
+				<a href="{% url 'catalog:toggle-dish-assign' pk=dish.id %}" class="btn btn-success link-to-page">
+					Assign me to this dish
+				</a>
+			{% endif %}
+
+		</h1>
+		<hr>
+		<ul>
+			{% for cook in dish.cooks.all %}
+				<li>{{ cook.username }} ({{ cook.first_name }} {{ cook.last_name }})</li>
+			{% endfor %}
+		</ul>
+		<a href="{% url 'catalog:dish-list' %}" class="btn btn-secondary">Back to dishes</a>
+	</div>
+
 {% endblock %}

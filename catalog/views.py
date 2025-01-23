@@ -186,6 +186,3 @@ def toggle_assign_to_dish(request, pk):
     else:
         cook.dishes.add(pk)
     return HttpResponseRedirect(reverse_lazy("catalog:dish-detail", args=[pk]))
-
-def TestView(request):
-    return render(request, "catalog/test.html")
