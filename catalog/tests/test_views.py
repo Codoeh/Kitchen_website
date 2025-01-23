@@ -5,6 +5,7 @@ from django.test import TestCase
 from django.urls import reverse
 from catalog.models import Cook, Dish, DishType
 
+
 class ViewTests(TestCase):
     def setUp(self):
         self.user = get_user_model().objects.create_user(
@@ -29,7 +30,6 @@ class ViewTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "catalog/index.html")
 
-
     def test_cook_list_view(self):
         self.client.login(username="testuser", password="password123")
         response = self.client.get(reverse("catalog:cook-list"))
@@ -39,48 +39,60 @@ class ViewTests(TestCase):
 
     def test_cook_detail_view(self):
         self.client.login(username="testuser", password="password123")
-        response = self.client.get(reverse("catalog:cook-detail", args=[self.user.id]))
+        response = self.client.get(reverse(
+            "catalog:cook-detail",
+            args=[self.user.id]))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "catalog/cook_detail.html")
         self.assertContains(response, self.user.first_name)
 
     def test_cook_create_view(self):
         self.client.login(username="testuser", password="password123")
-        response = self.client.post(reverse("catalog:cook-create"), {
-            "username": "newcook",
-            "password": "password123",  # Dodano hasło
-            "first_name": "New",
-            "last_name": "Cook",
-            "years_of_experience": 3,
-           "date_joined": datetime.now().isoformat(),
-        })
+        response = self.client.post(
+            reverse("catalog:cook-create"),
+            {
+                "username": "newcook",
+                "password": "password123",  # Dodano hasło
+                "first_name": "New",
+                "last_name": "Cook",
+                "years_of_experience": 3,
+                "date_joined": datetime.now().isoformat(),
+            },
+        )
         self.assertEqual(response.status_code, 302)
         self.assertTrue(Cook.objects.filter(username="newcook").exists())
 
-
     def test_dish_list_view(self):
-        self.client.login(username="testuser", password="password123")
+        self.client.login(username="testuser",
+                          password="password123")
         response = self.client.get(reverse("catalog:dish-list"))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "catalog/dish_list.html")
+        self.assertTemplateUsed(response,
+                                "catalog/dish_list.html")
         self.assertContains(response, self.dish.name)
 
     def test_dish_detail_view(self):
         self.client.login(username="testuser", password="password123")
-        response = self.client.get(reverse("catalog:dish-detail", args=[self.dish.id]))
+        response = (self.client.
+                    get(reverse("catalog:dish-detail",
+                                args=[self.dish.id])))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "catalog/dish_detail.html")
+        self.assertTemplateUsed(response,
+                                "catalog/dish_detail.html")
         self.assertContains(response, self.dish.description)
 
     def test_dish_create_view(self):
         self.client.login(username="testuser", password="password123")
-        response = self.client.post(reverse("catalog:dish-create"), {
-            "name": "New Dish",
-            "description": "New description",
-            "price": 75.00,
-            "dish_type": self.dish_type.id,
-            "cooks": [self.user.id],
-        })
+        response = self.client.post(
+            reverse("catalog:dish-create"),
+            {
+                "name": "New Dish",
+                "description": "New description",
+                "price": 75.00,
+                "dish_type": self.dish_type.id,
+                "cooks": [self.user.id],
+            },
+        )
         self.assertEqual(response.status_code, 302)
         self.assertTrue(Dish.objects.filter(name="New Dish").exists())
 
@@ -93,13 +105,17 @@ class ViewTests(TestCase):
 
     def test_dishes_by_type_view(self):
         self.client.login(username="testuser", password="password123")
-        response = self.client.get(reverse("catalog:dishes-by-type", args=[self.dish_type.id]))
+        response = self.client.get(
+            reverse("catalog:dishes-by-type", args=[self.dish_type.id])
+        )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "catalog/dishes_by_type.html")
         self.assertContains(response, self.dish.name)
 
     def test_toggle_assign_to_dish(self):
         self.client.login(username="testuser", password="password123")
-        response = self.client.post(reverse('catalog:toggle-dish-assign', args=[self.dish.id]))
+        response = self.client.post(
+            reverse("catalog:toggle-dish-assign", args=[self.dish.id])
+        )
         self.assertEqual(response.status_code, 302)
         self.assertNotIn(self.dish, self.user.dishes.all())

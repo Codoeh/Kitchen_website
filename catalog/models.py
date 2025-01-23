@@ -27,6 +27,7 @@ class Cook(AbstractUser):
     def get_absolute_url(self):
         return reverse("catalog:cook-detail", kwargs={"pk": self.pk})
 
+
 class Dish(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()

@@ -7,7 +7,8 @@ from catalog.forms import (
     DishSearchForm,
     DishTypeSearchForm,
 )
-from catalog.models import DishType, Dish
+from catalog.models import DishType
+
 
 class CookExperienceUpdateFormTest(TestCase):
     def test_valid_experience(self):
@@ -21,6 +22,7 @@ class CookExperienceUpdateFormTest(TestCase):
             form.errors["years_of_experience"], ["Years cannot be negative"]
         )
 
+
 class CookSearchFormTest(TestCase):
     def test_empty_search(self):
         form = CookSearchForm(data={"username": ""})
@@ -31,6 +33,7 @@ class CookSearchFormTest(TestCase):
         form = CookSearchForm(data={"username": "testuser"})
         self.assertTrue(form.is_valid())
         self.assertEqual(form.cleaned_data["username"], "testuser")
+
 
 class DishFormTest(TestCase):
     def setUp(self):
@@ -62,6 +65,7 @@ class DishFormTest(TestCase):
         self.assertFalse(form.is_valid())
         self.assertIn("name", form.errors)
 
+
 class DishSearchFormTest(TestCase):
     def test_empty_search(self):
         form = DishSearchForm(data={"name": ""})
@@ -72,6 +76,7 @@ class DishSearchFormTest(TestCase):
         form = DishSearchForm(data={"name": "Pasta"})
         self.assertTrue(form.is_valid())
         self.assertEqual(form.cleaned_data["name"], "Pasta")
+
 
 class DishTypeSearchFormTest(TestCase):
     def test_empty_search(self):

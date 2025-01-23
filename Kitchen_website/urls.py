@@ -26,4 +26,5 @@ urlpatterns = [
     path("", include("catalog.urls", namespace="catalog")),
     path("accounts/", include("django.contrib.auth.urls")),
     path("__debug__/", include("debug_toolbar.urls")),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + debug_toolbar_urls()
+] + static(settings.STATIC_URL,
+           document_root=settings.STATIC_ROOT) + debug_toolbar_urls()

@@ -1,7 +1,8 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 
-from catalog.models import Cook, Dish, DishType
+from catalog.models import Dish, DishType
+
 
 class ModelTests(TestCase):
     def setUp(self):
