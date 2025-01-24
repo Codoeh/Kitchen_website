@@ -79,3 +79,12 @@ class ModelTests(TestCase):
         )
         with self.assertRaises(ValidationError):
             self.dish.full_clean()
+
+    def test_create_dish_with_missing_dish_price(self):
+        self.dish = Dish(
+            name="testdish5",
+            description="test_description",
+            dish_type=self.dish_type,
+        )
+        with self.assertRaises(ValidationError):
+            self.dish.full_clean()
