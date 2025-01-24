@@ -2,11 +2,14 @@ from django.contrib.auth.models import AbstractUser
 from django.core.validators import MinValueValidator
 from django.db import models
 from django.urls import reverse
+from django.utils.timezone import now
 
 
 class DishType(models.Model):
     name = models.CharField(max_length=255,
                             unique=True,)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ["name"]
@@ -18,6 +21,8 @@ class DishType(models.Model):
 class Cook(AbstractUser):
     years_of_experience = models.IntegerField(default=0,
                                               validators=[MinValueValidator(0),])
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         verbose_name = "Cook"
@@ -39,6 +44,8 @@ class Dish(models.Model):
                                 validators=[MinValueValidator(0.0)])
     dish_type = models.ForeignKey(DishType, on_delete=models.CASCADE)
     cooks = models.ManyToManyField(Cook, related_name="dishes")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ["name"]
