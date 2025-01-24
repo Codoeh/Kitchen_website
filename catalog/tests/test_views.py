@@ -119,3 +119,21 @@ class ViewTests(TestCase):
         )
         self.assertEqual(response.status_code, 302)
         self.assertNotIn(self.dish, self.user.dishes.all())
+
+    def test_dish_create_view_with_negative_price(self):
+        self.client.login(username="testuser", password="password123")
+        response = self.client.post(
+            reverse("catalog:dish-create"),
+            {
+                "name": "Invalid Dish",
+                "description": "Invalid description",
+                "price": -75.00,
+                "dish_type": self.dish_type.id,
+                "cooks": [self.user.id],
+            },
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertFalse(Dish.objects.filter(name="Invalid Dish").exists())
+        form = response.context["form"]
+        self.assertIn("price", form.errors)
+        self.assertEqual(form.errors["price"], ["Price cannot be less than zero."])
