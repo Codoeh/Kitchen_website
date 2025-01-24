@@ -137,3 +137,23 @@ class ViewTests(TestCase):
         form = response.context["form"]
         self.assertIn("price", form.errors)
         self.assertEqual(form.errors["price"], ["Price cannot be less than zero."])
+
+
+    def test_cook_create_view_with_negative_experience(self):
+        self.client.login(username="testuser", password="password123")
+        response = self.client.post(
+            reverse("catalog:cook-create"),
+            {
+                "username": "Invalid",
+                "password": "password123",
+                "first_name": "New",
+                "last_name": "Cook",
+                "years_of_experience": -3,
+                "date_joined": datetime.now().isoformat(),
+            },
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertFalse(Cook.objects.filter(username="Invalid").exists())
+        form = response.context["form"]
+        self.assertIn("years_of_experience", form.errors)
+        self.assertEqual(form.errors["years_of_experience"], ["Years cannot be negative"])
