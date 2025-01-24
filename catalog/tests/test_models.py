@@ -61,3 +61,12 @@ class ModelTests(TestCase):
         with self.assertRaises(ValidationError):
             self.dish.full_clean()
 
+    def test_create_dish_with_missing_description(self):
+        self.dish = Dish.objects.create(
+            name="testdish3",
+            price=100,
+            dish_type=self.dish_type,
+        )
+        with self.assertRaises(ValidationError):
+            self.dish.full_clean()
+
