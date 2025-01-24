@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
 from django.views.generic import (
     ListView,
     DetailView,
@@ -43,8 +44,8 @@ def index(request):
 
     return render(request, "catalog/index.html", context=context)
 
-
-class CookListView(LoginRequiredMixin, ListView):
+@method_decorator(login_required, name="dispatch")
+class CookListView(ListView):
     model = Cook
     paginate_by = 5
 
@@ -66,30 +67,35 @@ class CookListView(LoginRequiredMixin, ListView):
         return queryset
 
 
-class CookDetailView(LoginRequiredMixin, DetailView):
+@method_decorator(login_required, name="dispatch")
+class CookDetailView(DetailView):
     model = Cook
     queryset = Cook.objects.all().prefetch_related("dishes__dish_type")
     template_name = "catalog/cook_detail.html"
 
 
-class CookCreateView(LoginRequiredMixin, CreateView):
+@method_decorator(login_required, name="dispatch")
+class CookCreateView(CreateView):
     model = Cook
     fields = "__all__"
     success_url = reverse_lazy("catalog:cook-list")
 
 
-class CookExperienceUpdateView(LoginRequiredMixin, UpdateView):
+@method_decorator(login_required, name="dispatch")
+class CookExperienceUpdateView(UpdateView):
     model = Cook
     form_class = CookExperienceUpdateForm
     success_url = reverse_lazy("catalog:cook-list")
 
 
-class CookDeleteView(LoginRequiredMixin, DeleteView):
+@method_decorator(login_required, name="dispatch")
+class CookDeleteView(DeleteView):
     model = Cook
     success_url = reverse_lazy("catalog:cook-list")
 
 
-class DishListView(LoginRequiredMixin, ListView):
+@method_decorator(login_required, name="dispatch")
+class DishListView(ListView):
     model = Dish
     paginate_by = 5
 
@@ -107,7 +113,8 @@ class DishListView(LoginRequiredMixin, ListView):
         return queryset
 
 
-class DishDetailView(LoginRequiredMixin, DetailView):
+@method_decorator(login_required, name="dispatch")
+class DishDetailView(DetailView):
     model = Dish
     template_name = "catalog/dish_detail.html"
 
@@ -116,24 +123,28 @@ class DishDetailView(LoginRequiredMixin, DetailView):
                 prefetch_related("cooks").select_related("dish_type"))
 
 
-class DishCreateView(LoginRequiredMixin, CreateView):
+@method_decorator(login_required, name="dispatch")
+class DishCreateView(CreateView):
     model = Dish
     form_class = DishForm
     success_url = reverse_lazy("catalog:dish-list")
 
 
-class DishUpdateView(LoginRequiredMixin, UpdateView):
+@method_decorator(login_required, name="dispatch")
+class DishUpdateView(UpdateView):
     model = Dish
     form_class = DishForm
     success_url = reverse_lazy("catalog:dish-list")
 
 
-class DishDeleteView(LoginRequiredMixin, DeleteView):
+@method_decorator(login_required, name="dispatch")
+class DishDeleteView(DeleteView):
     model = Dish
     success_url = reverse_lazy("catalog:dish-list")
 
 
-class DishTypeListView(LoginRequiredMixin, ListView):
+@method_decorator(login_required, name="dispatch")
+class DishTypeListView(ListView):
     model = DishType
     paginate_by = 5
     template_name = "catalog/dish_type_list.html"
@@ -152,7 +163,8 @@ class DishTypeListView(LoginRequiredMixin, ListView):
         return queryset
 
 
-class DishTypeCreateView(LoginRequiredMixin, CreateView):
+@method_decorator(login_required, name="dispatch")
+class DishTypeCreateView(CreateView):
     model = DishType
     fields = "__all__"
     success_url = reverse_lazy("catalog:dish-type-list")
@@ -174,14 +186,16 @@ class DishesByTypeView(ListView):
         return context
 
 
-class DishTypeUpdateView(LoginRequiredMixin, UpdateView):
+@method_decorator(login_required, name="dispatch")
+class DishTypeUpdateView(UpdateView):
     model = DishType
     fields = "__all__"
     success_url = reverse_lazy("catalog:dish-type-list")
     template_name = "catalog/dish_type_form.html"
 
 
-class DishTypeDeleteView(LoginRequiredMixin, DeleteView):
+@method_decorator(login_required, name="dispatch")
+class DishTypeDeleteView(DeleteView):
     model = DishType
     success_url = reverse_lazy("catalog:dish-type-list")
     template_name = "catalog/dish_type_confirm_delete.html"
