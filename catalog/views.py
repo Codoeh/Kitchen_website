@@ -43,6 +43,7 @@ def index(request):
 
     return render(request, "catalog/index.html", context=context)
 
+
 @method_decorator(login_required, name="dispatch")
 class CookListView(ListView):
     model = Cook

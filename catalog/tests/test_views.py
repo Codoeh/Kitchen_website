@@ -136,8 +136,8 @@ class ViewTests(TestCase):
         self.assertFalse(Dish.objects.filter(name="Invalid Dish").exists())
         form = response.context["form"]
         self.assertIn("price", form.errors)
-        self.assertEqual(form.errors["price"], ["Price cannot be less than zero."])
-
+        self.assertEqual(form.errors["price"],
+                         ["Price cannot be less than zero."])
 
     def test_cook_create_view_with_negative_experience(self):
         self.client.login(username="testuser", password="password123")
@@ -156,4 +156,5 @@ class ViewTests(TestCase):
         self.assertFalse(Cook.objects.filter(username="Invalid").exists())
         form = response.context["form"]
         self.assertIn("years_of_experience", form.errors)
-        self.assertEqual(form.errors["years_of_experience"], ["Years cannot be negative"])
+        self.assertEqual(form.errors["years_of_experience"],
+                         ["Years cannot be negative"])

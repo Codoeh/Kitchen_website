@@ -10,6 +10,7 @@ class CookAdmin(UserAdmin):
         (("Additional info", {"fields": ("years_of_experience",)}),)
     )
 
+
 @admin.register(Dish)
 class DishAdmin(admin.ModelAdmin):
     search_fields = ("name",)
