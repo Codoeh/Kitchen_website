@@ -95,7 +95,6 @@ class DishFormTest(TestCase):
         form = DishForm(
             data={
                 "name": "Test Dish",
-
                 "price": 25.0,
                 "dish_type": self.dish_type.id,
                 "cooks": [self.cook1.id, self.cook2.id],
@@ -103,6 +102,18 @@ class DishFormTest(TestCase):
         )
         self.assertFalse(form.is_valid())
         self.assertIn("description", form.errors)
+
+    def test_invalid_dish_form_missing_dish_type(self):
+        form = DishForm(
+            data={
+                "name": "Test Dish",
+                "description": "Delicious dish",
+                "price": 25.0,
+                "cooks": [self.cook1.id, self.cook2.id],
+            }
+        )
+        self.assertFalse(form.is_valid())
+        self.assertIn("dish_type", form.errors)
 
 
 class DishSearchFormTest(TestCase):
