@@ -21,7 +21,7 @@ class CookSearchForm(forms.Form):
 
 class DishForm(forms.ModelForm):
     cooks = forms.ModelMultipleChoiceField(
-        queryset=get_user_model().objects.all(),
+        queryset=Cook.objects.all(),
         widget=forms.CheckboxSelectMultiple,
     )
 
