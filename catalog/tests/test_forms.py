@@ -91,6 +91,20 @@ class DishFormTest(TestCase):
             form.errors["price"], ["Price cannot be less than zero."]
         )
 
+    def test_invalid_dish_form_missing_description(self):
+        form = DishForm(
+            data={
+                "name": "Test Dish",
+
+                "price": 25.0,
+                "dish_type": self.dish_type.id,
+                "cooks": [self.cook1.id, self.cook2.id],
+            }
+        )
+        self.assertFalse(form.is_valid())
+        self.assertIn("description", form.errors)
+
+
 class DishSearchFormTest(TestCase):
     def test_empty_search(self):
         form = DishSearchForm(data={"name": ""})
