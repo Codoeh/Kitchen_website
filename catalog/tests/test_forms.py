@@ -26,6 +26,13 @@ class CookExperienceUpdateFormTest(TestCase):
         form = CookExperienceUpdateForm(data={"years_of_experience": 0})
         self.assertTrue(form.is_valid())
 
+    def test_empty_experience(self):
+        form = CookExperienceUpdateForm(data={"years_of_experience": ""})
+        self.assertFalse(form.is_valid())
+        self.assertEqual(
+            form.errors["years_of_experience"], ["This field is required."]
+        )
+
 
 class CookSearchFormTest(TestCase):
     def test_empty_search(self):
