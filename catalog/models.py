@@ -5,7 +5,8 @@ from django.urls import reverse
 
 
 class DishType(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255,
+                            unique=True,)
 
     class Meta:
         ordering = ["name"]
@@ -31,9 +32,11 @@ class Cook(AbstractUser):
 
 
 class Dish(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255,
+                            unique=True,)
     description = models.TextField()
-    price = models.DecimalField(decimal_places=2, max_digits=10)
+    price = models.DecimalField(decimal_places=2, max_digits=10,
+                                validators=[MinValueValidator(0.0)])
     dish_type = models.ForeignKey(DishType, on_delete=models.CASCADE)
     cooks = models.ManyToManyField(Cook, related_name="dishes")
 
