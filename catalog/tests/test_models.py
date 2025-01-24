@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
 from django.test import TestCase
 
 from catalog.models import Dish, DishType
@@ -40,3 +41,13 @@ class ModelTests(TestCase):
             last_name="last",
         )
         self.assertEqual(str(self.cook.years_of_experience), "0")
+
+    def test_price_less_than_zero(self):
+        self.dish = Dish.objects.create(
+            name="testdish2",
+            description="test_description",
+            price=-100,
+            dish_type=self.dish_type,
+        )
+        with self.assertRaises(ValidationError):
+            self.dish.full_clean()
