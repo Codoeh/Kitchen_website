@@ -1,4 +1,5 @@
 from django.contrib.auth.models import AbstractUser
+from django.core.validators import MinValueValidator
 from django.db import models
 from django.urls import reverse
 
@@ -14,7 +15,8 @@ class DishType(models.Model):
 
 
 class Cook(AbstractUser):
-    years_of_experience = models.IntegerField(default=0)
+    years_of_experience = models.IntegerField(default=0,
+                                              validators=[MinValueValidator(0),])
 
     class Meta:
         verbose_name = "Cook"
