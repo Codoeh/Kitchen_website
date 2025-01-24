@@ -22,6 +22,10 @@ class CookExperienceUpdateFormTest(TestCase):
             form.errors["years_of_experience"], ["Years cannot be negative"]
         )
 
+    def test_zero_experience(self):
+        form = CookExperienceUpdateForm(data={"years_of_experience": 0})
+        self.assertTrue(form.is_valid())
+
 
 class CookSearchFormTest(TestCase):
     def test_empty_search(self):
