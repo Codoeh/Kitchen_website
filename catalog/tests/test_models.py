@@ -31,3 +31,12 @@ class ModelTests(TestCase):
 
     def test_dish_type_str(self):
         self.assertEqual(str(self.dish_type), "testdish_type")
+
+
+    def test_years_of_experience_default_value(self):
+        self.cook = get_user_model().objects.create(
+            username="testuser2",
+            first_name="first",
+            last_name="last",
+        )
+        self.assertEqual(str(self.cook.years_of_experience), "0")
