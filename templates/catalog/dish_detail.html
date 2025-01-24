@@ -28,7 +28,13 @@
 					Assign me to this dish
 				</a>
 			{% endif %}
-
+			{% if messages %}
+				<ul class="float-end">
+					{% for message in messages %}
+						<h4 class="{{ message.tags }}">{{ message }}</h4>
+					{% endfor %}
+				</ul>
+			{% endif %}
 		</h1>
 		<hr>
 		<ul>

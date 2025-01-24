@@ -1,7 +1,6 @@
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponseRedirect
+from django.contrib import messages
 from django.shortcuts import redirect
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
@@ -203,12 +202,16 @@ class DishTypeDeleteView(DeleteView):
 
 @login_required
 def toggle_assign_to_dish(request, pk):
-    cook = Cook.objects.only("id").get(id=request.user.id)
-    if Dish.objects.only("id").get(id=pk) in cook.dishes.all():
-        cook.dishes.remove(pk)
+    cook = request.user
+    dish = get_object_or_404(Dish, pk=pk)
+
+    if cook.dishes.filter(id=dish.id).exists():
+        cook.dishes.remove(dish)
+        messages.success(request, "Cook removed from dish.")
     else:
-        cook.dishes.add(pk)
-    return HttpResponseRedirect(reverse_lazy("catalog:dish-detail", args=[pk]))
+        cook.dishes.add(dish)
+        messages.success(request, "Cook assigned to dish.")
+    return redirect("catalog:dish-detail", pk=pk)
 
 
 def logout_view(request):
