@@ -1,0 +1,250 @@
+[
+{
+    "model": "catalog.dishtype",
+    "pk": 1,
+    "fields": {
+        "name": "Pasta",
+        "created_at": "2025-01-24T18:55:15.479Z",
+        "updated_at": "2025-01-24T18:55:15.486Z"
+    }
+},
+{
+    "model": "catalog.dishtype",
+    "pk": 2,
+    "fields": {
+        "name": "Pizza",
+        "created_at": "2025-01-24T18:55:15.479Z",
+        "updated_at": "2025-01-24T18:55:15.486Z"
+    }
+},
+{
+    "model": "catalog.dishtype",
+    "pk": 3,
+    "fields": {
+        "name": "Salads",
+        "created_at": "2025-01-24T18:55:15.479Z",
+        "updated_at": "2025-01-24T18:55:15.486Z"
+    }
+},
+{
+    "model": "catalog.dishtype",
+    "pk": 4,
+    "fields": {
+        "name": "Desserts",
+        "created_at": "2025-01-24T18:55:15.479Z",
+        "updated_at": "2025-01-24T18:55:15.486Z"
+    }
+},
+{
+    "model": "catalog.dishtype",
+    "pk": 5,
+    "fields": {
+        "name": "Drinks",
+        "created_at": "2025-01-24T18:55:15.479Z",
+        "updated_at": "2025-01-24T18:55:15.486Z"
+    }
+},
+{
+    "model": "catalog.dishtype",
+    "pk": 6,
+    "fields": {
+        "name": "Starters",
+        "created_at": "2025-01-24T18:55:15.479Z",
+        "updated_at": "2025-01-24T18:55:15.486Z"
+    }
+},
+{
+    "model": "catalog.dishtype",
+    "pk": 7,
+    "fields": {
+        "name": "1",
+        "created_at": "2025-01-24T18:55:15.479Z",
+        "updated_at": "2025-01-24T18:55:15.486Z"
+    }
+},
+{
+    "model": "catalog.dishtype",
+    "pk": 8,
+    "fields": {
+        "name": "2",
+        "created_at": "2025-01-24T18:55:15.479Z",
+        "updated_at": "2025-01-24T18:55:15.486Z"
+    }
+},
+{
+    "model": "catalog.dishtype",
+    "pk": 9,
+    "fields": {
+        "name": "3",
+        "created_at": "2025-01-24T18:55:15.479Z",
+        "updated_at": "2025-01-24T18:55:15.486Z"
+    }
+},
+{
+    "model": "catalog.dishtype",
+    "pk": 10,
+    "fields": {
+        "name": "4",
+        "created_at": "2025-01-24T18:55:15.479Z",
+        "updated_at": "2025-01-24T18:55:15.486Z"
+    }
+},
+{
+    "model": "catalog.dishtype",
+    "pk": 11,
+    "fields": {
+        "name": "5",
+        "created_at": "2025-01-24T18:55:15.479Z",
+        "updated_at": "2025-01-24T18:55:15.486Z"
+    }
+},
+{
+    "model": "catalog.cook",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$ct2VbuNY0RasQQoHsF88HY$NeQnavfsxmt3ZANeKszCXyFu0p5U7+PXUFHpu/nvyaE=",
+        "last_login": "2025-01-29T23:38:55.995Z",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "",
+        "last_name": "",
+        "email": "admin@example.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2025-01-18T21:35:10.584Z",
+        "years_of_experience": 0,
+        "created_at": "2025-01-24T18:55:15.439Z",
+        "updated_at": "2025-01-24T18:55:15.455Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "catalog.cook",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$x42dd4BK4XaDmkjkgjlAkd$6HpEln8XhMON093s4sLJGqX1BNJPS3TmIwQbm72z/6w=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "JaneDoe123",
+        "first_name": "Jane",
+        "last_name": "Doe",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-01-19T19:54:55.177Z",
+        "years_of_experience": 14,
+        "created_at": "2025-01-24T18:55:15.439Z",
+        "updated_at": "2025-01-24T18:55:15.455Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "catalog.cook",
+    "pk": 3,
+    "fields": {
+        "password": "Magdalena7&",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "Smith123",
+        "first_name": "John",
+        "last_name": "Smith",
+        "email": "johnsmith@example.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-01-20T19:49:38Z",
+        "years_of_experience": 3,
+        "created_at": "2025-01-24T18:55:15.439Z",
+        "updated_at": "2025-01-24T18:55:15.455Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "catalog.cook",
+    "pk": 5,
+    "fields": {
+        "password": "Magdalena7&",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "Tester",
+        "first_name": "Jack",
+        "last_name": "Black",
+        "email": "jackblack@example.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2025-01-24T18:16:28Z",
+        "years_of_experience": 3,
+        "created_at": "2025-01-24T18:55:15.439Z",
+        "updated_at": "2025-01-24T18:55:15.455Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "catalog.cook",
+    "pk": 6,
+    "fields": {
+        "password": "Magdalena7&",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "Test_user",
+        "first_name": "Johny",
+        "last_name": "Bravo",
+        "email": "bravo@exmple.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-01-24T18:20:40Z",
+        "years_of_experience": 3,
+        "created_at": "2025-01-24T18:55:15.439Z",
+        "updated_at": "2025-01-24T18:55:15.455Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "catalog.dish",
+    "pk": 1,
+    "fields": {
+        "name": "Carbonara",
+        "description": "There may be no more beloved Italian dish than carbonara: hot pasta tossed with a creamy sauce of raw beaten eggs, accentuated with crisp bits of guanciale, and finished with a shower of grated aged Pecorino Romano cheese plus freshly ground black pepper.",
+        "price": "16.20",
+        "dish_type": 1,
+        "created_at": "2025-01-24T18:55:15.464Z",
+        "updated_at": "2025-01-24T18:55:15.475Z",
+        "cooks": []
+    }
+},
+{
+    "model": "catalog.dish",
+    "pk": 2,
+    "fields": {
+        "name": "Margherita",
+        "description": "Margherita pizza is known for its ingredients representing the colours of the Italian flag. These ingredients include red tomato sauce, white mozzarella and fresh green basil. When all of these delicious flavours are combined on a hand-kneaded pizza base, a universally-adored pizza is created.",
+        "price": "15.00",
+        "dish_type": 2,
+        "created_at": "2025-01-24T18:55:15.464Z",
+        "updated_at": "2025-01-24T18:55:15.475Z",
+        "cooks": [
+            2
+        ]
+    }
+},
+{
+    "model": "catalog.dish",
+    "pk": 3,
+    "fields": {
+        "name": "Capricciosa",
+        "description": "Pizza capricciosa (Italian: [ˈpittsa kapritˈtʃoːza, -oːsa]; lit. 'capricious/whimsical pizza') is a style of pizza in Italian cuisine prepared with mozzarella cheese, prosciutto, mushrooms (usually champignons), green and black olives, artichokes, and tomatoes.",
+        "price": "17.00",
+        "dish_type": 2,
+        "created_at": "2025-01-24T18:55:15.464Z",
+        "updated_at": "2025-01-24T18:55:15.475Z",
+        "cooks": [
+            2,
+            3
+        ]
+    }
+}
+]

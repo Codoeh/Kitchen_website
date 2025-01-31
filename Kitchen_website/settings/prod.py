@@ -21,3 +21,7 @@ DATABASES = {
 print("Loaded settings from prod.py")
 
 DEBUG = False
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+STATICFILES_DIRS = (BASE_DIR / "static",)
