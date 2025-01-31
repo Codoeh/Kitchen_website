@@ -38,7 +38,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.environ.get("DJANGO_DEBUG", "").lower() in ["true", "1", "t"]
 
 
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",")
+ALLOWED_HOSTS = ["127.0.0.1", "https://kitchen-website-90ha.onrender.com"]
 
 # Application definition
 

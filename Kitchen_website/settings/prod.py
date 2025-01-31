@@ -2,8 +2,6 @@ from .base import *
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",")
-
 DATABASES = {
  'default': {
    'ENGINE': 'django.db.backends.postgresql',
